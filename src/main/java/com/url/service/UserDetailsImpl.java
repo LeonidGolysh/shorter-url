@@ -4,11 +4,9 @@ import com.url.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -26,7 +24,6 @@ public class UserDetailsImpl implements UserDetails {
         this.name = name;
         this.email = email;
         this.password = password;
-//        this.authorities = authorities;
     }
 
     public static UserDetailsImpl build(User user) {
@@ -40,7 +37,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
