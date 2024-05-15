@@ -31,13 +31,12 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests((requests) -> requests
+        return httpSecurity.authorizeHttpRequests(requests -> requests
                 .requestMatchers("/registration").permitAll()
                 .anyRequest().authenticated())
-            .formLogin((form) -> form
+            .formLogin(form -> form
                 .loginPage("/login").permitAll())
-                .logout((logout) -> logout.permitAll());
-
-        return httpSecurity.build();
+                .logout(logout -> logout.permitAll())
+                .build();
     }
 }
